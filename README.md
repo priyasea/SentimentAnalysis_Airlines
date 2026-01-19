@@ -616,10 +616,7 @@ Future enhancements will include continuous monitoring of input feature and pred
 
 ### Acknowledgements
 
-My sincere thanks to Data Talks Club and Alexei Grigorev for helping us reach these personal learning milestones. 
-Also Thanks to Kaggle and all my peers on ML Zoomcamp 2025
+My sincere thanks to Data Talks Club and Alexei Grigorev for helping us reach these personal learning milestones.
 
 
-```python
 
-```
