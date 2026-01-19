@@ -479,6 +479,36 @@ Once started, the API will be available at:
 - **Swagger UI** → `http://localhost:8000/docs/`
 ---
 
+### Local Deployment Images
+#### API Testing Examples
+
+#### 1. Transaction (POST /predict)
+
+##### Request
+
+![API request](images/cloud_deployment/airlinetweetprediction_request.png)
+
+```json
+
+{
+  "text": "Terrible experience",
+  "airline": "american",
+  "retweet_count": 15
+}
+
+```
+
+##### Response:
+
+![API request](images/cloud_deployment/airlinetweetprediction_response.png)
+
+```json
+{
+  "sentiment": 0,
+  "tweet": "Negative Tweet"
+}
+```
+
 
 ## Cloud Deployment
 
@@ -521,9 +551,10 @@ CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000"]
 ##  Proof of Successful Deployment
 
 ### Render Deployment Configuration
-![Deployment video Predict api](images/Cloud_Deployment/LoanPredictionAPI_Render.mp4)
-![Deployment video HTML UI](images/Cloud_Deployment/LoanPredictionHTML_Render.mp4)             
-![Deployment Pic](images/Cloud_Deployment/LoanPrediction_mainRender.png)
+[Deployment Video – Predict API](images/cloud_deployment/AirlineTweetSentimentPrediction_RenderVideo.mp4)   
+### Render URL: https://sentimentanalysis-airlines.onrender.com
+
+![Deployment Pic](images/cloud_deployment/airlinetweetsentimentanalysis_mainRender.png)
 
 
 ### API Testing Examples
@@ -532,34 +563,38 @@ CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ##### Request
 
-![API request](images/Cloud_Deployment/loanpredict_request.png)
+![API request](images/cloud_deployment/airlinetweetprediction_renderrequest.png)
 
 ```json
 
 {
-  "employment_status": "employed",
-  "education_level": "bachelors",
-  "grade_subgrade": "a1",
-  "loan_purpose": "business",
-  "credit_score": 650,
-  "annual_income": 120000,
-  "debt_to_income_ratio": 0.4,
-  "loan_amount": 40000,
-  "interest_rate": 13
+  "text": "@AmericanAir you Cancelled Flight both flights yesterday and rebook me in middle seat. Not acceptable. Upgrade to emergency row would help. #nothappy",
+  "airline": "american",
+  "retweet_count": 10
 }
-
 ```
 
 ##### Response:
 
-![API request](images/Cloud_Deployment/loanpredict_response.png)
+![API request](images/cloud_deployment/airlinetweetsentimentanalysis_RenderResponse.png)
 
 ```json
 {
-  "loan_paid_back_probability": 0.3745,
-  "loan_paid_back": "Loan will not be paid back"
+  "sentiment": 0,
+  "tweet": "Negative Tweet"
 }
 ```
+
+## Conclusion
+
+This project successfully implements an end-to-end Airline Tweet Sentiment Prediction system for Twitter tweets using machine learning. After performing detailed exploratory data analysis, feature engineering, and model comparison, LinearSVC was selected as the final model due to its high performance:
+
+F1-Score: 0.943001
+
+Precision: 0.45
+
+Recall: 
+The final solution was packaged with FastAPI, containerized using Docker, and deployed on Render, enabling real-time prediction of tweets. The system is ready for integration into production environments to help Airliners to improve their services after reading negative tweets. Flight carriers can engage with customer based on their tweet and ask for constructive feedback
 
 
 ```python
