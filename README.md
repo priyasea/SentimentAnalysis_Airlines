@@ -188,10 +188,6 @@ Due to limited features, we did EDA after feature engineering as follows:-
 
 ![Word Count Distribution](images/Word_Cloud_by_negative_sentiment.png)
 
-#### 9. (Categorical/Binary Features)
-
-
-
 ### 5. Correlation of Numeric Features
 
 **Image in repository:** `images/correlation_matrix.png`
@@ -609,6 +605,18 @@ Recall: 0.84 (positive class)  ,0.89 (negative class)
 
 
 The final solution was packaged with FastAPI, containerized using Docker, and deployed on Render, enabling real-time prediction of tweets. The system is ready for integration into production environments to help Airliners to improve their services after reading negative tweets. Flight carriers can engage with customer based on their tweet and ask for constructive feedback
+
+## Future Work
+
+### Model Monitoring & Drift Detection:
+Future enhancements will include continuous monitoring of input feature and prediction distributions to detect data and prediction drift. Drift signals will be integrated with alerting and retraining workflows to ensure long-term model stability in production.
+
+
+
+### Acknowledgements
+
+My sincere thanks to Data Talks Club and Alexei Grigorev for helping us reach these personal learning milestones. 
+Also Thanks to Kaggle and all my peers on ML Zoomcamp 2025
 
 
 ```python
