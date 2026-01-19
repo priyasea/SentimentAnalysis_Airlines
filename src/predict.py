@@ -52,9 +52,9 @@ class Sentiment(BaseModel):
 
 class SentimentPrediction(BaseModel):
     sentiment: int
-    review: str
+    tweet: str
 
-app = FastAPI(title="Airline Review Sentiment Prediction API", version="1.0")
+app = FastAPI(title="Airline Tweets Sentiment Prediction API", version="1.0")
 
 # =========================
 # Prediction Function
@@ -71,7 +71,7 @@ def predict_Sentiment(sentiment):
 # =========================
 @app.get("/")
 def home():
-    return {"message": "Welcome to Airline Sentiment Preiction API"}
+    return {"message": "Welcome to Airline Tweets Sentiment Preiction API"}
 
 #@app.get("/ui", response_class=HTMLResponse)
 #def ui():
@@ -81,10 +81,10 @@ def home():
 @app.post("/predict",response_model=SentimentPrediction)
 def predict_api(sentiment: Sentiment) -> SentimentPrediction:
     prob = predict_Sentiment(sentiment.model_dump())
-    pred = "Positive Review" if prob == 1 else "Negative Review"
+    pred = "Positive Tweet" if prob == 1 else "Negative Tweet"
     return SentimentPrediction(
         sentiment = prob,
-        review = pred
+        tweet = pred
      )
 # =========================
 # Main Entry Point
