@@ -4,6 +4,7 @@
 ## Problem Description
 When people complete their journeys on airplanes, they tweet about it upon landing or reaching their homes. These tweets can tell about a positive experience or negative experience with the flight carrier. The Airlines operating the flight have to scan through these tweets and determine which are the negative ones and respond to them accordingly assuring of better service next time or any amendments. 
 This machine learning project will help Airlines to identify negative reviews and take appropriate steps for improvement
+The main idea behind the project is to use natural language processing (NLP) and machine learning to automatically determine the sentiment expressed in tweets related to airline journeys. Airlines can use this information to understand customer satisfaction and quickly address issues highlighted in negative tweets.
 
 
 The objective of this project is to develop a machine learning–based Airline Tweets Sentiment Analysis Prediction system that predicts whether the tweet is positive or negative
