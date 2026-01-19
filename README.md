@@ -25,9 +25,9 @@ The model is deployed as a REST API using FastAPI, containerized using Docker, a
 
 ## How the Solution Is Used
 
-### 1. Transaction Prediction 
+### 1. Tweet Prediction 
 
-When a transaction is processed, its details are sent to the `/predict` endpoint. The API responds with sentiment labels and classification. 
+When a tweet is posted, its details are sent to the `/predict` endpoint. The API responds with sentiment labels and classification. 
 
 #### Example request:
 ```json
@@ -55,8 +55,8 @@ Based on the model response:
 
 | Prediction                      | Recommended Action       |
 |---------------------------------|--------------------------|
-| Negative Tweet                 | Take action for improvement/apology
-| Positive Tweet                 | Thank customer                      
+| Negative Tweet                 | Take action for improvement/issue an apology
+| Positive Tweet                 | Thank the customer                      
 
 ### Summary of integration
 
@@ -138,7 +138,7 @@ to ensure consistency during both training and inference.
 - We used Text feature to derive several numeric features like text_length, neg_word_count so that model learns characteristic features of negative and positive tweets
 - Prevents **data leakage** by excluding unique identifiers
 - Dropped columns like airline and user_timezone so that model can be built on important features.
-- Converted Target Variable airline_sentiment into numneric binary feature sentiment
+- Converted Target Variable airline_sentiment into numeric binary feature sentiment
 
 
 ## EDA after Feature Engineering 
@@ -146,7 +146,7 @@ to ensure consistency during both training and inference.
 Due to limited features, we did EDA after feature engineering as follows:-
 
 
-#### 1. Average Text Count by Sentiment
+#### 1. Average Text Length by Sentiment
 **Image in repository at:** `images/Average Text Length (characters) by Sentiment.png`
 
 ![Average Text Length](<images/Average Text Length (characters) by Sentiment.png>)
@@ -243,6 +243,18 @@ After comparing performance across models, **LinearSVC** was selected as the fin
 
 * Highest F1 Score on validation  
 * Best overall Recall and Precision
+
+### Final Model Evaluation (on Test Set)
+
+After selecting LinearSVC, the model was retrained using full train + testing datasets, and final evaluation was performed on the test set.
+
+| Metric | Value |
+|--------|-------|
+| F1 weighted | 0.87 |
+| Precision Positive Class | 0.86 |
+| Precision Negative Class | 0.87 |
+| Recall Positive Class | 0.84 |
+| Recall Negative Class | 0.89 |
 
 ### Pipeline Integration
 The transformer is used as part of the final ML pipeline:
@@ -557,9 +569,9 @@ CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000"]
 ![Deployment Pic](images/cloud_deployment/airlinetweetsentimentanalysis_mainRender.png)
 
 
-### API Testing Examples
+### API Testing Examples on Render
 
-#### 1. Single Transaction (POST /predict)
+#### 1. Single Tweet (POST /predict)
 
 ##### Request
 
@@ -589,11 +601,13 @@ CMD ["uvicorn", "src.predict:app", "--host", "0.0.0.0", "--port", "8000"]
 
 This project successfully implements an end-to-end Airline Tweet Sentiment Prediction system for Twitter tweets using machine learning. After performing detailed exploratory data analysis, feature engineering, and model comparison, LinearSVC was selected as the final model due to its high performance:
 
-F1-Score: 0.943001
+F1-Score: 0.87
 
-Precision: 0.45
+Precision: 0.86 (positive class) 0.87 (negative class)
 
-Recall: 
+Recall: 0.84 (positive class)  ,0.89 (negative class)
+
+
 The final solution was packaged with FastAPI, containerized using Docker, and deployed on Render, enabling real-time prediction of tweets. The system is ready for integration into production environments to help Airliners to improve their services after reading negative tweets. Flight carriers can engage with customer based on their tweet and ask for constructive feedback
 
 
